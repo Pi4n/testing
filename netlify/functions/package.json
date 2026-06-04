@@ -1,0 +1,9 @@
+{
+  "name": "netlify-functions",
+  "version": "1.0.0",
+  "description": "Netlify serverless functions for Oracle DB integration",
+  "main": "index.js",
+  "dependencies": {
+    "oracledb": "^6.7.0"
+  }
+}
