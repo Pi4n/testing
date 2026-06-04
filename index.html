@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Holistic Student Marketability</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+
+  <nav class="navbar navbar-expand-lg navbar-app">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">CCS3402 Marketability</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMain" aria-controls="navMain" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navMain">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link active" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="dashboard.html">Dashboard</a></li>
+          <li class="nav-item"><a class="nav-link" href="logging.html">Activity Logging</a></li>
+          <li class="nav-item"><a class="nav-link" href="admin.html">Admin</a></li>
+          <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <main class="container py-4">
+    <div class="row g-4 align-items-stretch">
+      <div class="col-lg-7">
+        <div class="card h-100 shadow-sm">
+          <div class="card-body">
+            <h1 class="h3 mb-2">Holistic Student Marketability</h1>
+            <p class="text-secondary mb-4">
+              Production application with <span class="badge badge-soft">HTML</span>,
+              <span class="badge badge-soft">CSS</span>, <span class="badge badge-soft">JavaScript</span>,
+              and a live <span class="badge badge-soft">Oracle SQL</span> backend powered by
+              <span class="badge badge-soft">Netlify Functions</span>.
+            </p>
+
+            <div class="d-flex flex-wrap gap-2 btn-stack-mobile">
+              <a class="btn btn-primary" href="dashboard.html" data-testid="nav-dashboard-btn">Open Student Dashboard</a>
+              <a class="btn btn-outline-primary" href="logging.html" data-testid="nav-logging-btn">Open Activity Logging</a>
+              <a class="btn btn-outline-primary" href="admin.html" data-testid="nav-admin-btn">Open Admin Management</a>
+            </div>
+            <hr class="my-4">
+
+            <div class="row g-3">
+              <div class="col-md-6">
+                <div class="feature-tile">
+                  <div class="fw-semibold">Student Dashboard</div>
+                  <div class="small text-secondary">Radar chart + progress bars comparing Academic vs Co-curricular.</div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="feature-tile">
+                  <div class="fw-semibold">Activity Logging</div>
+                  <div class="small text-secondary">Staff enter courses/activities; students register enrollment and participation.</div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="feature-tile">
+                  <div class="fw-semibold">Employability Scoring</div>
+                  <div class="small text-secondary">Computes a Marketability Index from holistic data + breadth bonus.</div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="feature-tile">
+                  <div class="fw-semibold">Admin Management</div>
+                  <div class="small text-secondary">Manage Learning Outcomes and Student Accounts.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card-footer border-0 pt-0">
+            <div class="small text-secondary" data-testid="connection-status">
+              <span id="dbStatus">Connecting to live Oracle database&hellip;</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-5">
+        <div class="card h-100 shadow-sm">
+          <div class="card-body">
+            <h2 class="h5">Quick start</h2>
+            <ol class="text-secondary mb-0">
+              <li>Sign in to <b>Admin Management</b> to create student accounts and learning outcomes.</li>
+              <li>Use <b>Activity Logging</b> to add programs, courses, activities, and skill mappings.</li>
+              <li>Register student enrollments and co-curricular participation.</li>
+              <li>View <b>Student Dashboard</b> for live Marketability Index scores.</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/app.js"></script>
+  <script src="assets/index.js"></script>
+</body>
+</html>

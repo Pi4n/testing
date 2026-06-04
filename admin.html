@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Management — CCS3402 Marketability</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+
+  <nav class="navbar navbar-expand-lg navbar-app">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">CCS3402 Marketability</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMain" aria-controls="navMain" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navMain">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="dashboard.html">Dashboard</a></li>
+          <li class="nav-item"><a class="nav-link" href="logging.html">Activity Logging</a></li>
+          <li class="nav-item"><a class="nav-link active" href="admin.html">Admin</a></li>
+          <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Login gate -->
+  <section id="loginSection" class="login-wrap">
+    <div class="login-card">
+      <div class="login-icon" aria-hidden="true">&#128274;</div>
+      <h1 class="h5 mb-1">Administrator Sign In</h1>
+      <p class="text-secondary small mb-4">Enter your credentials to access Admin Management.</p>
+      <form id="loginForm" data-testid="admin-login-form">
+        <div class="mb-3">
+          <label class="form-label" for="adminUser">Username</label>
+          <input class="form-control" id="adminUser" name="username" autocomplete="username" placeholder="admin" required data-testid="admin-username-input">
+        </div>
+        <div class="mb-3">
+          <label class="form-label" for="adminPass">Password</label>
+          <input class="form-control" id="adminPass" name="password" type="password" autocomplete="current-password" placeholder="••••••••" required data-testid="admin-password-input">
+        </div>
+        <button class="btn btn-primary w-100" type="submit" data-testid="admin-login-submit">Sign in</button>
+        <div class="login-error d-none" id="loginError" role="alert" data-testid="admin-login-error">Invalid username or password.</div>
+      </form>
+    </div>
+  </section>
+
+  <!-- Admin panel -->
+  <main id="adminPanel" class="container py-4 d-none" data-testid="admin-panel">
+    <div class="page-header d-flex flex-wrap align-items-center justify-content-between gap-2">
+      <div>
+        <h1 class="h4 mb-1">Admin Management</h1>
+        <div class="subtitle">Manage all entities of the Holistic Student Marketability system.</div>
+      </div>
+      <div class="d-flex flex-wrap gap-2 align-items-center">
+        <span class="pill small-muted">Signed in as <span class="mono text-white">admin</span></span>
+        <button class="btn btn-sm btn-outline-secondary" id="logoutBtn" type="button" data-testid="admin-logout-btn">Sign out</button>
+      </div>
+    </div>
+
+    <!-- Tab navigation -->
+    <ul class="nav nav-pills mb-3" id="adminTabs" role="tablist">
+      <li class="nav-item" role="presentation">
+        <button class="nav-link active" id="tab-overview" data-bs-toggle="pill" data-bs-target="#pane-overview" type="button" role="tab" data-testid="tab-overview-btn">Analytics</button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link" id="tab-students" data-bs-toggle="pill" data-bs-target="#pane-students" type="button" role="tab" data-testid="tab-students-btn">Students</button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link" id="tab-programs" data-bs-toggle="pill" data-bs-target="#pane-programs" type="button" role="tab" data-testid="tab-programs-btn">Programs</button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link" id="tab-skills" data-bs-toggle="pill" data-bs-target="#pane-skills" type="button" role="tab" data-testid="tab-skills-btn">Skills</button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link" id="tab-los" data-bs-toggle="pill" data-bs-target="#pane-los" type="button" role="tab" data-testid="tab-los-btn">Learning Outcomes</button>
+      </li>
+    </ul>
+
+    <div class="tab-content">
+
+      <!-- ============== ANALYTICS PANE ============== -->
+      <div class="tab-pane fade show active" id="pane-overview" role="tabpanel">
+        <div class="row g-3">
+          <div class="col-12">
+            <div class="card shadow-sm">
+              <div class="card-body">
+                <div class="fw-semibold mb-2">System overview</div>
+                <div class="d-flex flex-wrap gap-2">
+                  <span class="pill" data-testid="stat-programs-pill"><span class="small-muted">Programs</span> <span class="mono" id="countPrograms">0</span></span>
+                  <span class="pill" data-testid="stat-students-pill"><span class="small-muted">Students</span> <span class="mono" id="countStudents">0</span></span>
+                  <span class="pill"><span class="small-muted">Courses</span> <span class="mono" id="countCourses">0</span></span>
+                  <span class="pill" data-testid="stat-skills-pill"><span class="small-muted">Skills</span> <span class="mono" id="countSkills">0</span></span>
+                  <span class="pill" data-testid="stat-lo-pill"><span class="small-muted">Learning Outcomes</span> <span class="mono" id="countLO">0</span></span>
+                  <span class="pill" data-testid="stat-lomap-pill"><span class="small-muted">LO&rarr;Skill maps</span> <span class="mono" id="countLOMap">0</span></span>
+                  <span class="pill"><span class="small-muted">Enrollments</span> <span class="mono" id="countEnrollments">0</span></span>
+                  <span class="pill"><span class="small-muted">Co-curricular logs</span> <span class="mono" id="countCocurrLogs">0</span></span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Average MI by Program -->
+          <div class="col-lg-6">
+            <div class="card shadow-sm h-100">
+              <div class="card-body">
+                <div class="d-flex justify-content-between align-items-start mb-2">
+                  <div>
+                    <div class="fw-semibold">Average Marketability by Program</div>
+                    <div class="small text-secondary">Aggregate index per academic track</div>
+                  </div>
+                </div>
+                <hr class="my-3">
+                <div id="programAnalytics" data-testid="program-analytics-list"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Top Students Leaderboard -->
+          <div class="col-lg-6">
+            <div class="card shadow-sm h-100">
+              <div class="card-body">
+                <div class="d-flex justify-content-between align-items-start mb-2">
+                  <div>
+                    <div class="fw-semibold">Top performing students</div>
+                    <div class="small text-secondary">Ranked by Marketability Index</div>
+                  </div>
+                </div>
+                <hr class="my-3">
+                <div id="leaderboard" data-testid="leaderboard-list"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Tier distribution -->
+          <div class="col-12">
+            <div class="card shadow-sm">
+              <div class="card-body">
+                <div class="fw-semibold mb-2">Marketability tier distribution</div>
+                <div class="small text-secondary mb-3">Count of students per performance tier</div>
+                <div id="tierDistribution" data-testid="tier-distribution"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ============== STUDENTS PANE ============== -->
+      <div class="tab-pane fade" id="pane-students" role="tabpanel">
+        <div class="row g-3">
+          <div class="col-lg-5">
+            <div class="card shadow-sm">
+              <div class="card-body">
+                <div class="fw-semibold mb-2">Add New Student Account</div>
+                <form id="studentForm" class="row g-2" data-testid="student-form">
+                  <div class="col-12">
+                    <label class="form-label">Full Name</label>
+                    <input class="form-control" id="stu_full_name" placeholder="e.g., John Smith" required data-testid="student-fullname-input">
+                  </div>
+                  <div class="col-md-6">
+                    <label class="form-label">Matric No</label>
+                    <input class="form-control" id="stu_matric_no" placeholder="A22CS1234" required data-testid="student-matric-input">
+                  </div>
+                  <div class="col-md-6">
+                    <label class="form-label">Email</label>
+                    <input class="form-control" id="stu_email" type="email" placeholder="student@university.edu" required data-testid="student-email-input">
+                  </div>
+                  <div class="col-12">
+                    <label class="form-label">Academic Program Track</label>
+                    <select class="form-select" id="stu_program_id" required data-testid="student-program-select">
+                      <option value="">Select a program...</option>
+                    </select>
+                  </div>
+                  <div class="col-12 d-flex gap-2 mt-2">
+                    <button class="btn btn-primary" type="submit" data-testid="student-submit-btn">Create Student Account</button>
+                    <button class="btn btn-outline-secondary" type="button" id="studentClearBtn" data-testid="student-clear-btn">Clear</button>
+                  </div>
+                  <div class="col-12">
+                    <div class="form-text" id="studentFormHelp">Add a Program first if none are available.</div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-7">
+            <div class="card shadow-sm">
+              <div class="card-body">
+                <div class="fw-semibold mb-2">Student Accounts</div>
+                <hr class="my-3">
+                <div class="table-wrap">
+                  <table class="table table-sm align-middle">
+                    <thead>
+                      <tr><th>Matric No</th><th>Full Name</th><th>Email</th><th>Program</th></tr>
+                    </thead>
+                    <tbody id="studentTable" data-testid="student-table-body"></tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ============== PROGRAMS PANE ============== -->
+      <div class="tab-pane fade" id="pane-programs" role="tabpanel">
+        <div class="row g-3">
+          <div class="col-lg-5">
+            <div class="card shadow-sm">
+              <div class="card-body">
+                <div class="fw-semibold mb-2">Add Academic Program</div>
+                <form id="programForm" class="row g-2" data-testid="program-form">
+                  <div class="col-12">
+                    <label class="form-label">Program Name</label>
+                    <input class="form-control" id="prog_name" placeholder="e.g., Bachelor of Computer Science" required data-testid="program-name-input">
+                  </div>
+                  <div class="col-md-7">
+                    <label class="form-label">Faculty</label>
+                    <input class="form-control" id="prog_faculty" placeholder="e.g., Faculty of Computing" required data-testid="program-faculty-input">
+                  </div>
+                  <div class="col-md-5">
+                    <label class="form-label">Total Credits</label>
+                    <input class="form-control" id="prog_credits" type="number" min="0" step="1" value="120" required data-testid="program-credits-input">
+                  </div>
+                  <div class="col-12 d-flex gap-2 mt-2">
+                    <button class="btn btn-primary" type="submit" data-testid="program-submit-btn">Create Program</button>
+                    <button class="btn btn-outline-secondary" type="button" id="programClearBtn" data-testid="program-clear-btn">Clear</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-7">
+            <div class="card shadow-sm">
+              <div class="card-body">
+                <div class="fw-semibold mb-2">Existing Programs</div>
+                <hr class="my-3">
+                <div class="table-wrap">
+                  <table class="table table-sm align-middle">
+                    <thead>
+                      <tr><th>Name</th><th>Faculty</th><th class="text-end">Credits</th></tr>
+                    </thead>
+                    <tbody id="programTable" data-testid="program-table-body"></tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ============== SKILLS PANE ============== -->
+      <div class="tab-pane fade" id="pane-skills" role="tabpanel">
+        <div class="row g-3">
+          <div class="col-lg-5">
+            <div class="card shadow-sm">
+              <div class="card-body">
+                <div class="fw-semibold mb-2">Add Employability Skill</div>
+                <form id="skillForm" class="row g-2" data-testid="skill-form">
+                  <div class="col-12">
+                    <label class="form-label">Skill Name</label>
+                    <input class="form-control" id="sk_name" placeholder="e.g., Problem Solving" required data-testid="skill-name-input">
+                  </div>
+                  <div class="col-12">
+                    <label class="form-label">Skill Type</label>
+                    <select class="form-select" id="sk_type" required data-testid="skill-type-select">
+                      <option value="Cognitive">Cognitive (Academic Knowledge)</option>
+                      <option value="Soft Skill">Soft Skill (Technical Skills)</option>
+                      <option value="Professional">Professional (Marketability Values)</option>
+                    </select>
+                  </div>
+                  <div class="col-12">
+                    <label class="form-label">Description (optional)</label>
+                    <textarea class="form-control" id="sk_desc" rows="2" data-testid="skill-desc-input"></textarea>
+                  </div>
+                  <div class="col-12 d-flex gap-2 mt-2">
+                    <button class="btn btn-primary" type="submit" data-testid="skill-submit-btn">Create Skill</button>
+                    <button class="btn btn-outline-secondary" type="button" id="skillClearBtn" data-testid="skill-clear-btn">Clear</button>
+                  </div>
+                  <div class="col-12">
+                    <div class="form-text">Type is auto-translated to Oracle CHECK values (Option B).</div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-7">
+            <div class="card shadow-sm">
+              <div class="card-body">
+                <div class="fw-semibold mb-2">Existing Employability Skills</div>
+                <hr class="my-3">
+                <div class="table-wrap">
+                  <table class="table table-sm align-middle">
+                    <thead>
+                      <tr><th>Name</th><th>Type</th><th>Description</th></tr>
+                    </thead>
+                    <tbody id="skillTable" data-testid="skill-table-body"></tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ============== LEARNING OUTCOMES PANE ============== -->
+      <div class="tab-pane fade" id="pane-los" role="tabpanel">
+        <div class="row g-3">
+          <div class="col-lg-5">
+            <div class="card shadow-sm">
+              <div class="card-body">
+                <div class="fw-semibold mb-2">Add / Edit Learning Outcome</div>
+                <form id="loForm" class="row g-2" data-testid="lo-form">
+                  <input type="hidden" id="lo_id">
+                  <div class="col-md-4">
+                    <label class="form-label">LO code</label>
+                    <input class="form-control" id="lo_code" placeholder="LO1" required data-testid="lo-code-input">
+                  </div>
+                  <div class="col-md-8">
+                    <label class="form-label">Domain</label>
+                    <select class="form-select" id="domain" data-testid="lo-domain-select">
+                      <option>Academic</option>
+                      <option>Co-curricular</option>
+                    </select>
+                  </div>
+                  <div class="col-12">
+                    <label class="form-label">Description</label>
+                    <textarea class="form-control" id="description" rows="3" required data-testid="lo-description-input"></textarea>
+                  </div>
+                  <div class="col-12 d-flex gap-2 mt-2">
+                    <button class="btn btn-primary" type="submit" data-testid="lo-submit-btn">Save outcome</button>
+                    <button class="btn btn-outline-secondary" type="button" id="clearBtn" data-testid="lo-clear-btn">Clear</button>
+                  </div>
+                  <div class="col-12">
+                    <div class="form-text">Auto-associated with a default "General" course (Option B).</div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-7">
+            <div class="card shadow-sm">
+              <div class="card-body">
+                <div class="d-flex flex-wrap align-items-center justify-content-between gap-2">
+                  <div class="fw-semibold">Learning Outcomes</div>
+                  <input class="form-control form-control-sm" id="filter" placeholder="Search..." style="min-width: 200px" data-testid="lo-filter-input">
+                </div>
+                <hr class="my-3">
+                <div class="table-wrap">
+                  <table class="table table-sm table-hover align-middle">
+                    <thead>
+                      <tr>
+                        <th style="width: 90px">Code</th>
+                        <th style="width: 140px">Domain</th>
+                        <th>Description</th>
+                        <th style="width: 150px"></th>
+                      </tr>
+                    </thead>
+                    <tbody id="loTable" data-testid="lo-table-body"></tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/app.js"></script>
+  <script src="assets/admin.js"></script>
+</body>
+</html>

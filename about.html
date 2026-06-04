@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About — CCS3402 Marketability</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+
+  <nav class="navbar navbar-expand-lg navbar-app">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">CCS3402 Marketability</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMain" aria-controls="navMain" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navMain">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="dashboard.html">Dashboard</a></li>
+          <li class="nav-item"><a class="nav-link" href="logging.html">Activity Logging</a></li>
+          <li class="nav-item"><a class="nav-link" href="admin.html">Admin</a></li>
+          <li class="nav-item"><a class="nav-link active" href="about.html">About</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <main class="container py-4">
+    <!-- About card -->
+    <div class="card shadow-sm">
+      <div class="card-body">
+        <h1 class="h4 mb-3">About this project</h1>
+        <p class="text-secondary">
+          The <strong>Holistic Student Marketability</strong> system is a production-ready
+          full-stack web application designed for tracking and visualizing student
+          employability based on academic and co-curricular achievements.
+        </p>
+        <hr class="my-4">
+        <h2 class="h6 mb-2">Architecture</h2>
+        <ul class="text-secondary">
+          <li>Static HTML frontend with Bootstrap 5 dark theme</li>
+          <li>Netlify Serverless Functions (Node.js)</li>
+          <li>Oracle SQL Database (10-table relational model)</li>
+          <li>Server-side data translation layer for backward compatibility</li>
+        </ul>
+        <hr class="my-4">
+        <h2 class="h6 mb-2">Core data entities</h2>
+        <div class="d-flex flex-wrap gap-2">
+          <span class="badge badge-soft">Programs</span>
+          <span class="badge badge-soft">Students</span>
+          <span class="badge badge-soft">Courses</span>
+          <span class="badge badge-soft">Enrollments</span>
+          <span class="badge badge-soft">Learning Outcomes</span>
+          <span class="badge badge-soft">Employability Skills</span>
+          <span class="badge badge-soft">Co-curriculum</span>
+          <span class="badge badge-soft">Skill Mappings</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Credits card -->
+    <div class="card shadow-sm mt-4">
+      <div class="card-body">
+        <div class="d-flex align-items-center gap-2 mb-1">
+          <h2 class="h4 mb-0">Credits</h2>
+          <span class="badge badge-soft">Team</span>
+        </div>
+        <p class="small text-secondary mb-4">
+          Built with <span style="color:#f87171;">&#10084;</span> by students of
+          <strong>Universiti Putra Malaysia (UPM)</strong>.
+        </p>
+
+        <div class="row g-3">
+          <div class="col-sm-6 col-lg-3">
+            <div class="credit-tile">
+              <div class="credit-avatar">AF</div>
+              <div class="fw-semibold">Alfian Fadhli</div>
+              <div class="small text-secondary">UPM Student</div>
+            </div>
+          </div>
+          <div class="col-sm-6 col-lg-3">
+            <div class="credit-tile">
+              <div class="credit-avatar">AH</div>
+              <div class="fw-semibold">Akmal Hariz</div>
+              <div class="small text-secondary">UPM Student</div>
+            </div>
+          </div>
+          <div class="col-sm-6 col-lg-3">
+            <div class="credit-tile">
+              <div class="credit-avatar">AM</div>
+              <div class="fw-semibold">Arif Mirzan</div>
+              <div class="small text-secondary">UPM Student</div>
+            </div>
+          </div>
+          <div class="col-sm-6 col-lg-3">
+            <div class="credit-tile">
+              <div class="credit-avatar">W</div>
+              <div class="fw-semibold">Wan</div>
+              <div class="small text-secondary">UPM Student</div>
+            </div>
+          </div>
+        </div>
+
+        <hr class="my-4">
+        <div class="small text-secondary">
+          Course project for <strong>CCS3402</strong> &middot; Universiti Putra Malaysia &middot;
+          <span class="mono">2026</span>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,15 @@
+{
+  "name": "ccs3402-marketability",
+  "version": "1.0.0",
+  "description": "Holistic Student Marketability — Local development server with Oracle SQL integration",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "dependencies": {
+    "dotenv": "^16.6.1",
+    "express": "^4.21.1",
+    "oracledb": "^6.7.0"
+  }
+}
